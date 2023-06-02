@@ -1,3 +1,3 @@
-This file of "prepared" data usually holds prepared/encoded data that is ready to be fed into a model so that the model can be trained.
+This file of "prepared" data usually stores files which hold prepared/encoded data that is ready to be fed into a model so that the model can be trained.
 These files usually have about 20,000 instances with each instance holding a 227x227x3 array and an extra vector. These files, as you can guess- are huge.
 Because of that , the prepared data is not here, but there will be an example file so that you can atleast play with the model.
