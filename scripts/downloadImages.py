@@ -50,7 +50,7 @@ for row in CleanData:
 
 #example of instance: [[3d img array, encoded label]]
 nameOfFile= input('enter the name of the csv that you would like your data to be stored in')
-#this will export your prepared and encoded data
+#this will export your prepared/encoded data
 np.save(f'data\\prepared\\{nameOfFile}',training_data)
 
 
