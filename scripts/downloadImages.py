@@ -1,13 +1,11 @@
 from tensorflow import one_hot
 from PIL import Image 
 from io import BytesIO
-
 import numpy as np
 import requests
 import cv2
 
 #There is absolutely a better way to do this- but whatever, this works for now.
-
 #The categories you add in here will be the categories that will be included in your numpy dataset, 
 #that will eventually become a .pickle file to use for training the model.
 
@@ -50,8 +48,9 @@ for row in CleanData:
   else:
     pass
 
-#example of instance: [[3d img array, encoded label]]p
+#example of instance: [[3d img array, encoded label]]
 nameOfFile= input('enter the name of the csv that you would like your data to be stored in')
+#this will export your prepared and encoded data
 np.save(f'data\\prepared\\{nameOfFile}',training_data)
 
 
