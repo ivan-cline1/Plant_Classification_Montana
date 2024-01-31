@@ -8,3 +8,4 @@ Goal of model: Predict Montana Flora/plants based on an image. The training data
 
 # Tour of the repository
 
+Work in progress
