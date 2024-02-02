@@ -6,6 +6,3 @@ This is not the most professional machine learning project on Github, but hopefu
 Goal of model: Predict Montana Flora/plants based on an image. The training data is from inaturalist.com.
 
 
-# Tour of the repository
-
-Work in progress
