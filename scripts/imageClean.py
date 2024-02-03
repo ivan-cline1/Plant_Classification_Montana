@@ -3,6 +3,7 @@ import numpy as np
 
 
 
+
 ##imageURL or CSV Method
 ##Array of items should look like this -> [[imageURL, category]...]
 ##imageURL, category
@@ -28,7 +29,7 @@ def CleanCSV(fileLocation):
 def CountInstancesAndWriteToTXT(array,topPlantClassNum,nameOfCleanData):
   x = Counter(array)
   categories =[]
-  with open(f'{nameOfCleanData}Classes.txt.', encoding='utf-8-sig', mode='w') as fp:
+  with open(f'{nameOfCleanData}\\{topPlantClassNum}Classes.txt.', encoding='utf-8-sig', mode='w') as fp:
     fp.write('Class|Count\n')  
     for tag, count in x.most_common(topPlantClassNum):  
       fp.write(f'{tag},{count}\n')
@@ -40,6 +41,7 @@ def CountInstancesAndWriteToTXT(array,topPlantClassNum,nameOfCleanData):
 def CreateCSVWithOnlyTopClasses(categories,fileName,nameOfCleanData):
   ListOfClassesToTest = []
   counter = 0
+  nameOfCleanData= nameOfCleanData+"\\cleanData.npy"
   with open(fileName,encoding="utf8") as f:
     for line in f:
       if(line.split(",")[-1][-1:]==('\n')):
@@ -60,12 +62,10 @@ def CreateCSVWithOnlyTopClasses(categories,fileName,nameOfCleanData):
   return ListOfClassesToTest
 
 
-
-
-# fileName='ALL.csv'
-# Clean= CleanCSV(fileName)
-# categoryArray = CountInstancesAndWriteToTXT(Clean,10)
-# CreateCSVWithOnlyTopClasses(categoryArray,fileName)
+def cleanImages(fileName,amountOfClasses,cleanDataPath):
+  Clean= CleanCSV(fileName)
+  categoryArray = CountInstancesAndWriteToTXT(Clean,amountOfClasses,cleanDataPath) #amountOfClasses = 10
+  CreateCSVWithOnlyTopClasses(categoryArray,fileName,cleanDataPath)
 
 
 
