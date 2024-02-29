@@ -29,8 +29,7 @@ def CleanCSV(fileLocation):
 def CountInstancesAndWriteToTXT(array,topPlantClassNum,nameOfCleanData):
   x = Counter(array)
   categories =[]
-  with open(f'{nameOfCleanData}\\{topPlantClassNum}Classes.txt.', encoding='utf-8-sig', mode='w') as fp:
-    fp.write('Class|Count\n')  
+  with open(f'{nameOfCleanData}\\{topPlantClassNum}Classes.txt.', encoding='utf-8', mode='w') as fp: 
     for tag, count in x.most_common(topPlantClassNum):  
       fp.write(f'{tag},{count}\n')
       categories.append(tag)
@@ -38,10 +37,9 @@ def CountInstancesAndWriteToTXT(array,topPlantClassNum,nameOfCleanData):
     return categories
   
 
-def CreateCSVWithOnlyTopClasses(categories,fileName,nameOfCleanData):
+def CreateCSVWithOnlyTopClasses(categories,fileName,nameOfCleanData,amountOfClasses):
   ListOfClassesToTest = []
-  counter = 0
-  nameOfCleanData= nameOfCleanData+"\\cleanData.npy"
+  nameOfCleanData= nameOfCleanData+"\\cleanData_"+str(amountOfClasses)+".npy"
   with open(fileName,encoding="utf8") as f:
     for line in f:
       if(line.split(",")[-1][-1:]==('\n')):
@@ -53,11 +51,7 @@ def CreateCSVWithOnlyTopClasses(categories,fileName,nameOfCleanData):
         temp = [line.split(',')[2],x]
        
         ListOfClassesToTest.append(temp)
-          
-          #print(line.split(',')[2])
-        counter+=1
   f.close()
-#print(counter)
   np.save(nameOfCleanData,ListOfClassesToTest)
   return ListOfClassesToTest
 
@@ -65,7 +59,7 @@ def CreateCSVWithOnlyTopClasses(categories,fileName,nameOfCleanData):
 def cleanImages(fileName,amountOfClasses,cleanDataPath):
   Clean= CleanCSV(fileName)
   categoryArray = CountInstancesAndWriteToTXT(Clean,amountOfClasses,cleanDataPath) #amountOfClasses = 10
-  CreateCSVWithOnlyTopClasses(categoryArray,fileName,cleanDataPath)
+  CreateCSVWithOnlyTopClasses(categoryArray,fileName,cleanDataPath,amountOfClasses)
 
 
 
